@@ -2,7 +2,8 @@
 set -e
 
 INPUT_FORCE=${INPUT_FORCE:-false}
-INPUT_PULL_FIRST=${INPUT_INPUT_PULL_FIRST:-false}
+INPUT_PULL_FIRST=${INPUT_PULL_FIRST:-false}
+INPUT_FETCH_AND_MERGE_FIRST=${INPUT_FETCH_AND_MERGE_FIRST:-false}
 INPUT_TAGS=${INPUT_TAGS:-false}
 INPUT_DIRECTORY=${INPUT_DIRECTORY:-'.'}
 _FORCE_OPTION=''
@@ -28,6 +29,11 @@ remote_repo="${INPUT_GITHUB_URL_PROTOCOL}//${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}
 
 if ${INPUT_PULL_FIRST}; then
     git pull
+fi
+
+if ${INPUT_FETCH_AND_MERGE_FIRST}; then
+    git fetch
+    git merge
 fi
 
 git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS;
