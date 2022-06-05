@@ -26,6 +26,9 @@ inputs:
   pull_first:
     description: 'Determines if the action should pull before the execution of the push command'
     required: false
+  fetch_and_merge:
+    description: 'Determines if the action should fetch and merge before the execution of the push command'
+    required: false
   tags:
     description: 'Determines if --tags is used'
     required: false
